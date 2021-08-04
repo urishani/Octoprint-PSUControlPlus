@@ -3,15 +3,15 @@
     <div class="control-group">
         <div class="controls">
             <label class="checkbox">PSU warning
-                <input type="checkbox" data-bind="checked: settings.plugins.psucontrolPlus.enablePowerOffWarningDialog"> Show warning dialog when powering off via toggle button.
+                <input type="checkbox" data-bind="checked: settings.plugins.psucontrol_plus.enablePowerOffWarningDialog"> Show warning dialog when powering off via toggle button.
             </label>
         </div>
     </div>
-    <!-- ko if: hasGPIO() && (settings.plugins.psucontrolPlus.switchingMethod() === "GPIO" || settings.plugins.psucontrolPlus.sensingMethod() === "GPIO") -->
+    <!-- ko if: hasGPIO() && (settings.plugins.psucontrol_plus.switchingMethod() === "GPIO" || settings.plugins.psucontrol_plus.sensingMethod() === "GPIO") -->
     <div class="control-group">
         <label class="control-label">GPIO Mode</label>
         <div class="controls">
-            <select data-bind="value: settings.plugins.psucontrolPlus.GPIOMode">
+            <select data-bind="value: settings.plugins.psucontrol_plus.GPIOMode">
                 <option value="BOARD">BOARD</option>
                 <option value="BCM">BCM</option>
             </select>
@@ -25,7 +25,7 @@
     <div class="control-group">
         <label class="control-label">Switching Method</label>
         <div class="controls">
-            <select data-bind="value: settings.plugins.psucontrolPlus.switchingMethod">
+            <select data-bind="value: settings.plugins.psucontrol_plus.switchingMethod">
                 <option value="GCODE">G-Code Command</option>
                 <option value="SYSTEM">System Command</option>
                 <!-- ko if: hasGPIO() -->
@@ -34,78 +34,82 @@
             </select>
         </div>
     </div>
-    <!-- ko if: settings.plugins.psucontrolPlus.switchingMethod() === "GPIO" -->
+    <!-- ko if: settings.plugins.psucontrol_plus.switchingMethod() === "GPIO" -->
     <div class="control-group">
-        <label class="control-label">On/Off GPIO Pin for PSU</label>
+        <label class="control-label">On/Off GPIO PSU Pin</label>
         <div class="controls">
             <input type="number" min="0" class="input-mini"
-                data-bind="value: settings.plugins.psucontrolPlus.onoffPSUGPIOPin">
+                data-bind="value: settings.plugins.psucontrol_plus.onoffPSUGPIOPin">
             <input type="checkbox"
-                data-bind="checked: settings.plugins.psucontrolPlus.invertonoffPSUGPIOPin"> Invert
+                data-bind="checked: settings.plugins.psucontrol_plus.invertonoffPSUGPIOPin"> Invert
         </div>
-        <label class="control-label">On/Off GPIO Pin for LIGHT</label>
+        <label class="control-label">On/Off GPIO LIGHT Pin</label>
         <div class="controls">
-            <input type="number" min="0" class="input-mini"
-                data-bind="value: settings.plugins.psucontrolPlus.onoffLightGPIOPin">
             <input type="checkbox"
-                data-bind="checked: settings.plugins.psucontrolPlus.invertonoffLightGPIOPin"> Invert
+                data-bind="checked: settings.plugins.psucontrol_plus.lightEnabled"> Enable
+            <input type="number" min="0" class="input-mini"
+                data-bind="value: settings.plugins.psucontrol_plus.onoffLightGPIOPin, enable: settings.plugins.psucontrol_plus.lightEnabled">
+            <input type="checkbox"
+                data-bind="checked: settings.plugins.psucontrol_plus.invertonoffLightGPIOPin, enable: settings.plugins.psucontrol_plus.lightEnabled"> Invert
         </div>
-        <label class="control-label">On/Off GPIO Pin for FAN</label>
+        <label class="control-label">On/Off GPIO FAN Pin</label>
         <div class="controls">
-            <input type="number" min="0" class="input-mini"
-                data-bind="value: settings.plugins.psucontrolPlus.onoffFanGPIOPin">
             <input type="checkbox"
-                data-bind="checked: settings.plugins.psucontrolPlus.invertonoffFanGPIOPin"> Invert
+                data-bind="checked: settings.plugins.psucontrol_plus.fanEnabled"> Enable
+            <input type="number" min="0" class="input-mini"
+                data-bind="value: settings.plugins.psucontrol_plus.onoffFanGPIOPin, enable: settings.plugins.psucontrol_plus.fanEnabled">
+            <input type="checkbox"
+                data-bind="checked: settings.plugins.psucontrol_plus.invertonoffFanGPIOPin, enable: settings.plugins.psucontrol_plus.fanEnabled"> Invert
         </div>
     </div>
     <!-- /ko -->
-    <!-- ko if: settings.plugins.psucontrolPlus.switchingMethod() === "GCODE" -->
+    <!-- ko if: settings.plugins.psucontrol_plus.switchingMethod() === "GCODE" -->
     <div class="control-group">
         <label class="control-label">On G-Code Command</label>
         <div class="controls">
-            <input type="text" class="input-mini" data-bind="value: settings.plugins.psucontrolPlus.onGCodeCommand">
+            <input type="text" class="input-mini" data-bind="value: settings.plugins.psucontrol_plus.onGCodeCommand">
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">Off G-Code Command</label>
         <div class="controls">
-            <input type="text" class="input-mini" data-bind="value: settings.plugins.psucontrolPlus.offGCodeCommand">
+            <input type="text" class="input-mini" data-bind="value: settings.plugins.psucontrol_plus.offGCodeCommand">
         </div>
     </div>
     <!-- /ko -->
-    <!-- ko if: settings.plugins.psucontrolPlus.switchingMethod() === "SYSTEM" -->
+    <!-- ko if: settings.plugins.psucontrol_plus.switchingMethod() === "SYSTEM" -->
     <div class="control-group">
         <label class="control-label">On System Command</label>
         <div class="controls">
-            <input type="text" class="input-block-level" data-bind="value: settings.plugins.psucontrolPlus.onSysCommand">
+            <input type="text" class="input-block-level" data-bind="value: settings.plugins.psucontrol_plus.onSysCommand">
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">Off System Command</label>
         <div class="controls">
-            <input type="text" class="input-block-level" data-bind="value: settings.plugins.psucontrolPlus.offSysCommand">
+            <input type="text" class="input-block-level" data-bind="value: settings.plugins.psucontrol_plus.offSysCommand">
         </div>
     </div>
     <!-- /ko -->
-    <!-- ko if: settings.plugins.psucontrolPlus.switchingMethod() === "GPIO" || settings.plugins.psucontrolPlus.switchingMethod() === "SYSTEM" -->
+    <!-- ko if: settings.plugins.psucontrol_plus.switchingMethod() === "GPIO" || settings.plugins.psucontrol_plus.switchingMethod() === "SYSTEM" -->
     <div class="control-group">
         <div class="controls">
             <label class="checkbox">
-            <input type="checkbox" data-bind="checked: settings.plugins.psucontrolPlus.enablePseudoOnOff"> Enable switching with G-Code commands.
+            <input type="checkbox" data-bind="checked: settings.plugins.psucontrol_plus.enablePseudoOnOff"> Enable switching with G-Code commands.
             </label>
         </div>
     </div>
-    <!-- ko if: settings.plugins.psucontrolPlus.enablePseudoOnOff() -->
+    <!-- ko if: settings.plugins.psucontrol_plus.enablePseudoOnOff() -->
     <div class="control-group">
         <label class="control-label">On G-Code Command</label>
         <div class="controls">
-            <input type="text" class="input-mini" data-bind="value: settings.plugins.psucontrolPlus.pseudoOnGCodeCommand">
+            <input type="text" class="input-mini" data-bind="value: settings.plugins.psucontrol_plus.pseudoOnGCodeCommand">
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">Off G-Code Command</label>
         <div class="controls">
-            <input type="text" class="input-mini" data-bind="value: settings.plugins.psucontrolPlus.pseudoOffGCodeCommand">
+            <input type="text" class="input-mini" data-bind="value: settings.plugins.psucontrol_plus.pseudoOffGCodeCommand">
         </div>
     </div>
     <!-- /ko -->
@@ -116,7 +120,7 @@
     <div class="control-group">
         <label class="control-label">Sensing Method</label>
         <div class="controls">
-            <select data-bind="value: settings.plugins.psucontrolPlus.sensingMethod">
+            <select data-bind="value: settings.plugins.psucontrol_plus.sensingMethod">
                 <option value="INTERNAL">Internal</option>
                 <!-- ko if: hasGPIO() -->
                 <option value="GPIO">GPIO Pin</option>
@@ -125,25 +129,25 @@
             </select>
         </div>
     </div>
-    <!-- ko if: settings.plugins.psucontrolPlus.sensingMethod() === "GPIO" -->
+    <!-- ko if: settings.plugins.psucontrol_plus.sensingMethod() === "GPIO" -->
     <div class="control-group">
         <label class="control-label">Sensing GPIO Pin</label>
         <div class="controls">
-            <input type="number" min="0" class="input-mini" data-bind="value: settings.plugins.psucontrolPlus.senseGPIOPin">
-            <select data-bind="value: settings.plugins.psucontrolPlus.senseGPIOPinPUD" class="input-medium">
+            <input type="number" min="0" class="input-mini" data-bind="value: settings.plugins.psucontrol_plus.senseGPIOPin">
+            <select data-bind="value: settings.plugins.psucontrol_plus.senseGPIOPinPUD" class="input-medium">
                 <option value="">Float</option>
                 <option value="PULL_UP">Pull-Up</option>
                 <option value="PULL_DOWN">Pull-Down</option>
             </select>
-            <input type="checkbox" data-bind="checked: settings.plugins.psucontrolPlus.invertsenseGPIOPin"> Invert
+            <input type="checkbox" data-bind="checked: settings.plugins.psucontrol_plus.invertsenseGPIOPin"> Invert
         </div>
     </div>
     <!-- /ko -->
-    <!-- ko if: settings.plugins.psucontrolPlus.sensingMethod() === "SYSTEM" -->
+    <!-- ko if: settings.plugins.psucontrol_plus.sensingMethod() === "SYSTEM" -->
     <div class="control-group">
         <label class="control-label">Sensing System Command</label>
         <div class="controls">
-            <input type="text" class="input-block-level" data-bind="value: settings.plugins.psucontrolPlus.senseSystemCommand">
+            <input type="text" class="input-block-level" data-bind="value: settings.plugins.psucontrol_plus.senseSystemCommand">
         </div>
     </div>
     <!-- /ko -->
@@ -151,7 +155,7 @@
         <label class="control-label">Polling Interval</label>
         <div class="controls">
             <div class="input-append">
-                <input type="number" min="1" max="10" step="1" class="input-mini text-right" data-bind="value: settings.plugins.psucontrolPlus.sensePollingInterval">
+                <input type="number" min="1" max="10" step="1" class="input-mini text-right" data-bind="value: settings.plugins.psucontrol_plus.sensePollingInterval">
                 <span class="add-on">sec</span>
             </div>
         </div>
@@ -162,15 +166,15 @@
     <div class="control-group">
         <div class="controls">
             <label class="checkbox">
-            <input type="checkbox" data-bind="checked: settings.plugins.psucontrolPlus.autoOn"> Automatically turn PSU ON
+            <input type="checkbox" data-bind="checked: settings.plugins.psucontrol_plus.autoOn"> Automatically turn PSU ON
             </label>
         </div>
     </div>
-    <!-- ko if: settings.plugins.psucontrolPlus.autoOn() -->
+    <!-- ko if: settings.plugins.psucontrol_plus.autoOn() -->
     <div class="control-group">
         <label class="control-label">Trigger Commands</label>
         <div class="controls">
-            <input type="text" class="input-block-level" data-bind="value: settings.plugins.psucontrolPlus.autoOnTriggerGCodeCommands">
+            <input type="text" class="input-block-level" data-bind="value: settings.plugins.psucontrol_plus.autoOnTriggerGCodeCommands">
         </div>
     </div>
     <!-- /ko -->
@@ -178,7 +182,7 @@
         <label class="control-label">Post On Delay</label>
         <div class="controls">
             <div class="input-append">
-                <input type="number" min="0" step="0.1" class="input-mini text-right" data-bind="value: settings.plugins.psucontrolPlus.postOnDelay">
+                <input type="number" min="0" step="0.1" class="input-mini text-right" data-bind="value: settings.plugins.psucontrol_plus.postOnDelay">
                 <span class="add-on">sec</span>
             </div>
         </div>
@@ -186,7 +190,7 @@
     <div class="control-group">
         <div class="controls">
             <label class="checkbox">
-            <input type="checkbox" data-bind="checked: settings.plugins.psucontrolPlus.connectOnPowerOn"> Connect when powered on.
+            <input type="checkbox" data-bind="checked: settings.plugins.psucontrol_plus.connectOnPowerOn"> Connect when powered on.
             </label>
         </div>
     </div>
@@ -202,35 +206,35 @@
     <div class="control-group">
         <div class="controls">
             <label class="checkbox">PSU
-                <input type="checkbox" data-bind="checked: settings.plugins.psucontrolPlus.powerOffPSUWhenIdle"> Automatically turn PSU OFF when idle
+                <input type="checkbox" data-bind="checked: settings.plugins.psucontrol_plus.powerOffPSUWhenIdle"> Automatically turned OFF when idle
             </label>
             <label class="checkbox">LIGHT
-                <input type="checkbox" data-bind="checked: settings.plugins.psucontrolPlus.powerOffLightWhenIdle"> Automatically turn LIGHT OFF when idle
+                <input type="checkbox" data-bind="checked: settings.plugins.psucontrol_plus.powerOffLightWhenIdle"> Automatically turned OFF when idle
             </label>
             <label class="checkbox">FAN
-                <input type="checkbox" data-bind="checked: settings.plugins.psucontrolPlus.powerOffFanWhenIdle"> Automatically turn FAN OFF when idle
+                <input type="checkbox" data-bind="checked: settings.plugins.psucontrol_plus.powerOffFanWhenIdle"> Automatically turned OFF when idle
             </label>
         </div>
     </div>
-    <!-- ko if: settings.plugins.psucontrolPlus.powerOffWhenIdle() -->
+    <!-- ko if: settings.plugins.psucontrol_plus.powerOffPSUWhenIdle() || settings.plugins.psucontrol_plus.powerOffLightWhenIdle() || settings.plugins.psucontrol_plus.powerOffFanWhenIdle() -->
     <div class="control-group">
         <label class="control-label">Idle Timeout</label>
         <div class="controls">
-                <input type="number" min="0" class="input-mini text-right" data-bind="value: settings.plugins.psucontrolPlus.idleTimeout">
+                <input type="number" min="0" class="input-mini text-right" data-bind="value: settings.plugins.psucontrol_plus.idleTimeout">
                 <span class="add-on">min</span>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">Ignore Commands</label>
         <div class="controls">
-            <input type="text" class="input-block-level" data-bind="value: settings.plugins.psucontrolPlus.idleIgnoreCommands">
+            <input type="text" class="input-block-level" data-bind="value: settings.plugins.psucontrol_plus.idleIgnoreCommands">
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">Wait For Temperature</label>
         <div class="controls">
             <div class="input-append">
-                <input type="number" min="0" class="input-mini text-right" data-bind="value: settings.plugins.psucontrolPlus.idleTimeoutWaitTemp">
+                <input type="number" min="0" class="input-mini text-right" data-bind="value: settings.plugins.psucontrol_plus.idleTimeoutWaitTemp">
                 <span class="add-on">°C</span>
             </div>
         </div>
@@ -245,7 +249,7 @@
     <div class="control-group">
         <div class="controls">
             <label class="checkbox">
-            <input type="checkbox" data-bind="checked: settings.plugins.psucontrolPlus.disconnectOnPowerOff"> Disconnect on power off.
+            <input type="checkbox" data-bind="checked: settings.plugins.psucontrol_plus.disconnectOnPowerOff"> Disconnect on power off.
             </label>
         </div>
     </div>

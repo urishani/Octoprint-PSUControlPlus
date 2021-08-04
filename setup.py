@@ -3,14 +3,14 @@ import setuptools
 
 ########################################################################################################################
 
-plugin_identifier = "psucontrol"
+plugin_identifier = "psucontrol_plus"
 plugin_package = "octoprint_%s" % plugin_identifier
-plugin_name = "OctoPrint-PSUControl"
-plugin_version = "0.1.11"
-plugin_description = "Control ATX/AUX power supply."
-plugin_author = "Shawn Bruce"
-plugin_author_email = "kantlivelong@gmail.com"
-plugin_url = "https://github.com/kantlivelong/OctoPrint-PSUControl"
+plugin_name = "OctoPrint-PSUControlPlus"
+plugin_version = "0.1.12.us"
+plugin_description = "Control ATX/AUX power supply and enclosure with additoins for light and a fan."
+plugin_author = "Uri Shani based on Shawn Bruce"
+plugin_author_email = "uri.shani@gmail.com, kantlivelong@gmail.com"
+plugin_url = "https://github.com/urishani/OctoPrint-PSUControlPlus"
 plugin_license = "AGPLv3"
 plugin_additional_data = []
 

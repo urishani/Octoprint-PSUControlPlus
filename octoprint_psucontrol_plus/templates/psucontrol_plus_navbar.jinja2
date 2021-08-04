@@ -1,21 +1,21 @@
 <a class="psucontrolplus_indicator"
     id="psucontrolplus_indicator_psu"
     class="pull-right" title="Toggle PSU" href="#"
-    data-bind="click: function() { loginState.isUser() && $root.togglePSU(); }, visible: (isPSUOn() !== undefined)"
+    data-bind="click: function() { loginState.isUser() && togglePSU(); }, visible: (isPSUOn() !== undefined)"
     style="display: none">
     <i class="icon-bolt"></i>
 </a>
 <a class="psucontrolplus_indicator"
     id="psucontrolplus_indicator_light"
     class="pull-right" title="Toggle Light" href="#"
-    data-bind="click: function() { loginState.isUser() && $root.toggleLight(); }, visible: (isLightOn() !== undefined)"
+    data-bind="click: function() { loginState.isUser() && toggleLight(); }, visible: settings.plugins.psucontrol_plus.lightEnabled"
     style="display: none">
-    <i class="fas-fa-lightbulb"></i>
+    <i class="fas fa-lightbulb"></i>
 </a>
 <a class="psucontrolplus_indicator"
     id="psucontrolplus_indicator_fan"
     class="pull-right" title="Toggle Fan" href="#"
-    data-bind="click: function() { loginState.isUser() && $root.toggleFan(); }, visible: (isFanOn() !== undefined)"
+    data-bind="click: function() { loginState.isUser() && toggleFan(); }, visible: settings.plugins.psucontrol_plus.fanEnabled"
     style="display: none">
     <i class="fas fa-fan"></i>
 </a>

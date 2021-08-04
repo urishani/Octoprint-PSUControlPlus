@@ -1,2 +1,10 @@
 .psucontrolplus_indicator.on i{color:#0F0}
 .psucontrolplus_indicator.off i{color:grey}
+.psucontrolplus_indicator {
+    text-align: center;
+    font-size: 15px;
+}
+.psucontrolplus_container {
+    display: flex;
+    flex-wrap: nowrap;
+}
